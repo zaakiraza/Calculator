@@ -27,7 +27,7 @@ const funminus = () => {
 }
 
 const funmulti = () => {
-    a.value = a.value + 'x';
+    a.value = a.value + '*';
 }
 
 const fundvide = () => {
