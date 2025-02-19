@@ -1,4 +1,6 @@
 let a = document.getElementById('logic');
+a.focus();
+
 let plus = document.getElementById('plus');
 let del = document.getElementById('del');
 let equal = document.getElementById('equal');
@@ -7,98 +9,54 @@ let multi = document.getElementById('multi');
 let mod = document.getElementById('mod');
 let dot = document.getElementById('dot');
 let divide = document.getElementById('divide');
+let zero = document.getElementById('zero');
+let one = document.getElementById('one');
+let two = document.getElementById('two');
+let three = document.getElementById('three');
+let four = document.getElementById('four');
+let five = document.getElementById('five');
+let six = document.getElementById('six');
+let seven = document.getElementById('seven');
+let eight = document.getElementById('eight');
+let nine = document.getElementById('nine');
+
+
 function clearscreen() {
     a.value = "";
 }
 
 const cross = () => {
     const myarr = Array.from(a.value);
-    console.log(myarr);
     myarr.pop();
     a.value = myarr.join("")
 }
 
-const funplus = () => {
-    a.value = a.value + '+';
+function funAll(oper) {
+    if (oper == "Math.cos()" || oper == "Math.sin()" || oper == "Math.tan()" || oper == "Math.pow()" || oper == "Math.sqrt()") {
+        let currentValue = Array.from(oper);
+        console.log(currentValue);
+        currentValue.splice(0, 5);
+        currentValue = currentValue.join('')
+        currentValue = currentValue.toString();
+        oper = currentValue;
+    }
+    a.value = a.value + oper
 }
-
-const funminus = () => {
-    a.value = a.value + '-';
-}
-
-const funmulti = () => {
-    a.value = a.value + '*';
-}
-
-const fundvide = () => {
-    a.value = a.value + '/';
-}
-
-const fundot = () => {
-    a.value = a.value + '.';
-}
-
-const funmod = () => {
-    a.value = a.value + '%';
-}
-
-let zero = document.getElementById('zero');
-const fun = () => {
-    a.value = a.value + '0';
-}
-
-
-let one = document.getElementById('one');
-const fun1 = () => {
-    a.value = a.value + '1';
-}
-
-let two = document.getElementById('two');
-const fun2 = () => {
-    a.value = a.value + '2';
-}
-
-let three = document.getElementById('three');
-const fun3 = () => {
-    a.value = a.value + '3';
-}
-
-let four = document.getElementById('four');
-const fun4 = () => {
-    a.value = a.value + '4';
-}
-const fun5 = () => {
-    let five = document.getElementById('five');
-    a.value = a.value + '5';
-}
-const fun6 = () => {
-    let six = document.getElementById('six');
-    a.value = a.value + '6';
-}
-const fun7 = () => {
-    let seven = document.getElementById('seven');
-    a.value = a.value + '7';
-}
-const fun8 = () => {
-    let eight = document.getElementById('eight');
-    a.value = a.value + '8';
-}
-const fun9 = () => {
-    let nine = document.getElementById('nine');
-    a.value = a.value + '9';
-}
-
 
 const funequal = () => {
-    let arr = Array.from(a.value);
-    clearscreen();
-    a.value = eval(arr.join(""));
+    let inputValue = a.value;
+    inputValue = inputValue.replace(/\b(sin|cos|tan|sqrt|pow)\b/g, 'Math.$1');
+    try {
+        clearscreen();
+        a.value = eval(inputValue);
+    } catch (error) {
+        a.value = "Error";
+    }
 }
 
-a.addEventListener('keypress', enterhit = (event) => {
-    let arr = Array.from(a.value);
+a.addEventListener('keypress', (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
-        a.value = eval(arr.join(""))
+        funequal();
     }
 });
