@@ -60,3 +60,19 @@ a.addEventListener('keypress', (event) => {
         funequal();
     }
 });
+
+// SCRUM-1: dark mode toggle
+let themeToggle = document.getElementById('themeToggle');
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    let isDark = document.body.classList.contains('dark-mode');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Restore the saved theme when the page loads
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.textContent = '☀️';
+}

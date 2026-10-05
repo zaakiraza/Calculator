@@ -9,30 +9,56 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: var(--page-bg);
     margin: 0;
     font-family: Arial, sans-serif;
+    transition: background-color 0.2s ease;
+}
+
+/* Theme palette (SCRUM-1: dark mode toggle) */
+body {
+    --page-bg: #f5f5f5;
+    --calc-bg: #fff;
+    --calc-shadow: rgba(0, 0, 0, 0.1);
+    --screen-bg: #222;
+    --screen-text: #fff;
+    --number-bg: #e0e0e0;
+    --number-text: #000;
+    --btn-shadow: rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode {
+    --page-bg: #121212;
+    --calc-bg: #1e1e1e;
+    --calc-shadow: rgba(0, 0, 0, 0.6);
+    --screen-bg: #000;
+    --screen-text: #f5f5f5;
+    --number-bg: #333;
+    --number-text: #f5f5f5;
+    --btn-shadow: rgba(0, 0, 0, 0.5);
 }
 
 .calc {
     width: 33%;
     border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    box-shadow: 0px 0px 20px var(--calc-shadow);
+    background-color: var(--calc-bg);
     padding: 20px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #logic {
     width: 100%;
     height: 60px;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--screen-bg);
+    color: var(--screen-text);
     text-align: left;
     padding: 10px;
     font-size: 2em;
     border-radius: 5px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .buttons {
@@ -47,7 +73,7 @@ body {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 3px 5px var(--btn-shadow);
     transition: all 0.2s ease;
 }
 
@@ -57,8 +83,9 @@ body {
 }
 
 .number {
-    background-color: #e0e0e0;
-    color: #000;
+    background-color: var(--number-bg);
+    color: var(--number-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .operator {
@@ -72,4 +99,27 @@ body {
 
 .equals {
     background-color: #1976d2;
+}
+
+.calc-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.theme-toggle {
+    background-color: var(--number-bg);
+    color: var(--number-text);
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0px 3px 5px var(--btn-shadow);
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:active {
+    box-shadow: 0px 1px 2px var(--btn-shadow);
+    transform: translateY(2px);
 }
